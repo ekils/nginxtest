@@ -1,0 +1,24 @@
+version: "3.7"
+
+services:
+
+  flask:
+    build: ./flask
+    container_name: template_flask
+    # restart: always
+    environment:
+      - APP_NAME=FlaskApp
+    expose:
+      - 8080
+
+  nginx:
+    build: ./nginx
+    container_name: template_nginx
+    # restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+
+    depends_on:
+      - flask
+
